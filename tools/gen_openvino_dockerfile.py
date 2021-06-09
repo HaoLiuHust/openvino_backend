@@ -66,6 +66,10 @@ ENV LD_LIBRARY_PATH $INTEL_OPENVINO_DIR/deployment_tools/inference_engine/lib/in
 ENV PYTHONPATH $INTEL_OPENVINO_DIR/tools:$PYTHONPATH
 ENV IE_PLUGINS_PATH $INTEL_OPENVINO_DIR/deployment_tools/inference_engine/lib/intel64
 
+ENV http_proxy=http://192.168.10.66:10809
+ENV https_proxy=http://192.168.10.66:10809
+RUN git config --global http.proxy http://192.168.10.66:10809 && git config --global https.proxy http://192.168.10.66:10809
+
 RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021 && \
     apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021 && rm GPG-PUB-KEY-INTEL-OPENVINO-2021 && \
     cd /etc/apt/sources.list.d && \
